@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Post
 
 
@@ -9,6 +10,9 @@ def list_posts(request):
 
 
 def post_detail(request, pk):
-    post = Post.objects.get(id=pk)
-    context = {"post": post}
-    return render(request, "detail.html", context)
+    try:
+        post = Post.objects.get(id=pk)
+        context = {"post": post}
+        return render(request, "detail.html", context)
+    except Post.DoesNotExist:
+        return HttpResponse("Sorry this post is not available yet.")
