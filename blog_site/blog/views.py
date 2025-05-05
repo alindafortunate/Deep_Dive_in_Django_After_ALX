@@ -1,18 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
+
 from .models import Post
 
 
-def list_posts(request):
-    posts = Post.objects.all()
-    context = {"posts": posts}
-    return render(request, "index.html", context)
+def post_list(request):
+    posts = Post.published.all()
+    return render(request, "blog/post/list.html", {"posts": posts})
 
 
-def post_detail(request, pk):
-    try:
-        post = Post.objects.get(id=pk)
-        context = {"post": post}
-        return render(request, "detail.html", context)
-    except Post.DoesNotExist:
-        return HttpResponse("Sorry this post is not available yet.")
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id, status=Post.Status.PUBLISHED)
+
+    return render(request, "blog/post/detail.html", {"post": post})
