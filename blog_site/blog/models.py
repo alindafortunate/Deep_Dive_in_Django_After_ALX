@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils import timezone
 from django.db import models
+from django.urls import reverse
 
 
 class PublishedManager(models.Manager):
@@ -24,8 +25,11 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=Status, default=Status.DRAFT)
-    objects = models.Manager()  # Default manager.
-    published = PublishedManager()  # Custom manager.
+    objects = models.Manager()
+    published = PublishedManager()
+
+    def get_absolute_url(self):
+        return reverse("blog:post_detail", args=[self.id])
 
     class Meta:
         ordering = ["-publish"]
