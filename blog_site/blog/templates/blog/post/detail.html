@@ -8,5 +8,6 @@
 {{post.body | linebreaks}}
 <img src="{{post.photo.url}}" alt="{{post.title}}">
 <p class="date">Published {{post.publish}} by {{post.author}}</p>
+<p><a href="{% url 'blog:post_share' post.id %}">Share this post</a></p>
 
 {% endblock content %}
