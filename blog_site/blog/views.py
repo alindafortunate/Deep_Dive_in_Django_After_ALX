@@ -53,13 +53,12 @@ def post_share(request, post_id):
             cd = form.cleaned_data
             post_url = request.build_absolute_uri(post.get_absolute_url())
             subject = (
-                f"{cd['name']} ({cd['email']})" f" Recommends you read, {post.title}"
+                f"{cd['name']} ({cd['email']})" f" Recommends you read {post.title}"
             )
             message = (
                 f"Read {post.title} at {post_url} \n\n"
-                f"{cd['name']}'s comments:{cd['comment']}"
+                f"{cd['name']}'s comments: {cd['comment']}"
             )
-
             send_mail(
                 subject=subject,
                 message=message,
@@ -70,5 +69,11 @@ def post_share(request, post_id):
     else:
         form = EmailPostForm()
     return render(
-        request, "blog/post/share.html", {"post": post, "form": form, "sent": sent}
+        request,
+        "blog/post/share.html",
+        {
+            "post": post,
+            "form": form,
+            "sent": sent,
+        },
     )
