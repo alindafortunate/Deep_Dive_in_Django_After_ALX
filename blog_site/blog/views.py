@@ -93,9 +93,5 @@ def post_comment(request, post_id):
     return render(
         request,
         "blog/post/comment.html",
-        {
-            "post": post,
-            "form": form,
-            "comment": comment,
-        },
+        {"post": post, "form": form, "comment": comment},
     )
