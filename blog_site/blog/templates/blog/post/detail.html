@@ -10,5 +10,21 @@
 <p class="date">Published {{post.publish}} by {{post.author}}</p>
 <p><a href="{% url 'blog:post_share' post.id %}">Share this Post</a></p>
 
+<h2>Comments</h2>
+{% with comments.count as total_comments %}
+<ol>
+    {% for comment in comments %}
+    <li>
+        <p>{{comment.body}}</p>
+    </li>
+    <p>Commented by {{comment.name}}</p>
+
+    {% endfor %}
+</ol>
+<p>{{total_comments}} comments.</p>
+{% endwith %}
+
+
+
 {% include 'blog/includes/comment_form.html' %}
 {% endblock content %}
