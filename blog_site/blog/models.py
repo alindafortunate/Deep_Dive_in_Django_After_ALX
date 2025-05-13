@@ -20,7 +20,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date="publish")
     body = models.TextField()
-    photo = models.ImageField(default=" ", blank=True)
+    photo = models.ImageField(upload_to="images", blank=True)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
