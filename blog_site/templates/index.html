@@ -12,14 +12,14 @@
 </head>
 
 <body>
-
+    <h1>Hello</h1>
     <ol>
         {% for post in posts %}
         <h1>
             <li>{{post.title}}</li>
         </h1>
         <p>{{post.slug}}</p>
-        <p>Published on: {{post.publish}} By: {{post.author}} </p>
+        <p>Published on: {{post.publish}} By: {{post.author}}. </p>
 
         {% endfor %}
     </ol>
