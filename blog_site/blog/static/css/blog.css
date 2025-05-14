@@ -41,6 +41,11 @@ p.date {
     font-style: italic;
 }
 
+/* p.tags {
+    color: #00abff;
+    text-decoration: none;
+} */
+
 .left {
     float: left;
     margin-right: 10px;
