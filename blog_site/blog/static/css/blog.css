@@ -107,9 +107,9 @@ input[type=submit] {
     color: #666;
 }
 
-img.my_image {
+img.myimages {
     display: block;
-    max-width: 200px;
+    max-width: 400px;
     height: auto;
     width: 100%;
 }
