@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.views.generic import ListView
 from django.core.mail import send_mail
+from django.db.models import Count
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
@@ -53,6 +54,8 @@ def post_detail(request, year, month, day, slug):
     # Retrieving similar posts.
     post_tag_ids = post.tags.values_list("id", flat=True)
     similar_posts = Post.published.filter(tags__in=post_tag_ids).exclude(id=post.id)
+    # Incase on the same post with the same number of tags, recommend the most recent.
+    similar_posts = similar_posts.annotate
     return render(
         request,
         "blog/post/detail.html",
