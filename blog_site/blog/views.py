@@ -52,7 +52,7 @@ def post_detail(request, year, month, day, slug):
     comments = post.comments.filter(active=True)
     # Retrieving similar posts.
     post_tag_ids = post.tags.values_list("id", flat=True)
-
+    similar_posts = Post.published.filter(tags__in=post_tag_ids).exclude(id=post.id)
     return render(
         request,
         "blog/post/detail.html",
