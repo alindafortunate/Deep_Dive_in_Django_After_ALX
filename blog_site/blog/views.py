@@ -50,6 +50,8 @@ def post_detail(request, year, month, day, slug):
     )
     form = CommentForm()
     comments = post.comments.filter(active=True)
+    # Retrieving similar posts.
+    post_tag_ids = post.tags.values_list("id", flat=True)
 
     return render(
         request,
