@@ -3,9 +3,8 @@ from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.views.generic import ListView
 from django.core.mail import send_mail
-
+from django.db.models import Count
 from django.views.decorators.http import require_POST
-
 from taggit.models import Tag
 from .models import Post
 from .forms import EmailPostForm, CommentForm
@@ -51,7 +50,14 @@ def post_detail(request, year, month, day, slug):
     )
     form = CommentForm()
     comments = post.comments.filter(active=True)
+    # Retrieving related posts by tags.
+    post_tag_ids = post.tags.values_list("id", flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tag_ids).exclude(id=post.id)
 
+    # Retrieving one post incase the same posts have the same tags, and also returning 4 posts by slicing.
+    similar_posts = similar_posts.annotate(same_tags=Count("tags")).order_by(
+        "-same_tags", "-publish"
+    )[:4]
     return render(
         request,
         "blog/post/detail.html",
@@ -59,6 +65,7 @@ def post_detail(request, year, month, day, slug):
             "post": post,
             "form": form,
             "comments": comments,
+            "similar_posts": similar_posts,
         },
     )
 
