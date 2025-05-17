@@ -58,6 +58,9 @@ def post_detail(request, year, month, day, slug):
     similar_posts = similar_posts.annotate(same_tags=Count("tags")).order_by(
         "-same_tags", "-publish"
     )[:4]
+    # You can even use the similar_objects() method from taggit
+    #  to retrieve the similar objects that have the same tag
+    # similiar_objects = post.tags.similar_objects()
     return render(
         request,
         "blog/post/detail.html",
