@@ -20,8 +20,9 @@
     </div>
     <div id="sidebar">
         <h2>My blog</h2>
-        <p>Enjoy the content.</p>
-        <p>We have so far written {% total_posts %} posts.</p>
+        <p>Enjoy the content. We have so far written {% total_posts %} posts.</p>
+        <h3>Latest Posts.</h3>
+        {% show_latest_posts 3 %}
 
 
     </div>
