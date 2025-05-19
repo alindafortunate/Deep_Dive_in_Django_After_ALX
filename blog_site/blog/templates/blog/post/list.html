@@ -1,5 +1,5 @@
-{% load blog_tags %}
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
 
 {% block title %}My Blog{% endblock title %}
 
@@ -28,7 +28,7 @@
 </p>
 
 <p class="date">{{post.publish}} by {{post.author}}</p>
-{{post.body | markdown | truncatewords_html:30}}
+{{post.body | markdown | truncatewords_html:10}}
 
 {% endfor %}
 {% include 'pagination.html' with page=posts %}
