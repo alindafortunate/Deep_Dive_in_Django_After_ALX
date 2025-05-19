@@ -25,5 +25,6 @@ def get_most_commented_posts(count=3):
     )[:count]
 
 
+@register.filter(name="markdown")
 def markdown_format(text):
     pass
