@@ -1,3 +1,5 @@
+import markdown
+from django.utils.safestring import mark_safe
 from django import template
 from django.db.models import Count
 from ..models import Post
@@ -21,3 +23,7 @@ def get_most_commented_posts(count=3):
     return Post.published.annotate(total_comments=Count("comments")).order_by(
         "-total_comments"
     )[:count]
+
+
+def markdown_format(text):
+    pass
