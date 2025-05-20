@@ -1,1 +1,2 @@
 import markdown
+from django.template.defaultfilters import truncatechars_html
