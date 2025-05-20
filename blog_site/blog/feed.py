@@ -8,7 +8,7 @@ from .models import Post
 class LatestPostFeed(Feed):
     title = "My Blog"
     link = reverse_lazy("blog:post_list")
-    description = "This is the latest content."
+    description = "New posts for my blog."
 
     def items(self):
         return Post.published.all()[:5]
