@@ -1,5 +1,5 @@
 import markdown
-from django.template.defaultfilters import truncatewords
+from django.template.defaultfilters import truncatewords_html
 from django.contrib.syndication.views import Feed
 from django.urls import reverse_lazy
 from .models import Post
@@ -15,3 +15,6 @@ class LatestPostFeed(Feed):
 
     def item_title(self, item):
         return item.title
+
+    def item_description(self, item):
+        return truncatewords_html(markdown.markdown(item.body), 30)
