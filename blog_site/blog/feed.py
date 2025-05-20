@@ -4,6 +4,11 @@ from django.contrib.syndication.views import Feed
 from django.urls import reverse_lazy
 from .models import Post
 
+
 class LatestPostFeed(Feed):
-    title='My Blog'
-    link=
+    title = "My Blog"
+    link = reverse_lazy("blog:post_list")
+    description = "This is the latest content."
+
+    def items(self):
+        return Post.published.all()[:5]
