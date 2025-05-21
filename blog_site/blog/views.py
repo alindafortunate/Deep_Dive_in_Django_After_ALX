@@ -122,3 +122,6 @@ def post_comment(request, post_id):
         "blog/post/comment.html",
         {"post": post, "form": form, "comment": comment},
     )
+
+
+# On 21st/May/2025 I was engaged with Building Tomorrow work, so I didn't code.
