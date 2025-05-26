@@ -147,6 +147,6 @@ def post_search(request):
         {
             "form": form,
             "query": query,
-            "results": results,
+            "results": results
         },
     )
