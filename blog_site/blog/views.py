@@ -128,11 +128,13 @@ def post_comment(request, post_id):
 # On 21st/May/2025 I was engaged with Building Tomorrow work, so I didn't code.
 # On 23rd/May/2025 I was engaged with the donor visit (Building Tomorrow work) and I didn't code.
 # On 24th/May/2025 I was engaged with the thanks giving ceremony of Madam Rhonah, and I didn't code.
+
+
 def post_search(request):
     form = SearchForm()
     query = None
     results = []
-    if 'query' in request.GET:
+    if "query" in request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data["query"]
@@ -142,5 +144,9 @@ def post_search(request):
     return render(
         request,
         "blog/post/search.html",
-        {"form": form, "query": query, "results": results},
+        {
+            "form": form,
+            "query": query,
+            "results": results,
+        },
     )
