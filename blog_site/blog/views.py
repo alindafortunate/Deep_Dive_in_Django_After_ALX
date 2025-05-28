@@ -139,9 +139,18 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data["query"]
+            search_vector = SearchVector("title", "body")
+            search_query = SearchQuery(query)
             results = (
-                Post.published.annotate(search=SearchVector("title", "body"))
-            ).filter(search=query)
+                (
+                    Post.published.annotate(
+                        search=search_vector,
+                        rank=SearchRank(search_vector, search_query),
+                    )
+                )
+                .filter(search=search_query)
+                .order_by("-rank")
+            )
     return render(
         request,
         "blog/post/search.html",
