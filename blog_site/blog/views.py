@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.views.generic import ListView
 from django.core.mail import send_mail
+from django.contrib.postgres.search import SearchVector
 from django.db.models import Count
 from django.views.decorators.http import require_POST
 
@@ -128,4 +129,3 @@ def post_comment(request, post_id):
 # On 21st/May/2025 I was engaged with Building Tomorrow work, so I didn't code.
 # On 23rd/May/2025 I was engaged with the donor visit (Building Tomorrow work) and I didn't code.
 # On 24th/May/2025 I was engaged with the thanks giving ceremony of Madam Rhonah, and I didn't code.
-
