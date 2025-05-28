@@ -20,6 +20,7 @@
     </div>
     <div id="sidebar">
         <h2>My blog</h2>
+        <p><a href="{% url 'blog:post_search' %}">Search For Posts.</a></p>
         <p>Enjoy the content. We have so far written {% total_posts %} posts.</p>
         <p><a href="{% url 'blog:post_feeds' %}">Subscribe to my RSS feed.</a></p>
         <h3>Latest Posts.</h3>
