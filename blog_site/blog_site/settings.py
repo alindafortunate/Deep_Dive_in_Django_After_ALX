@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 from decouple import config
 
@@ -85,17 +86,20 @@ WSGI_APPLICATION = "blog_site.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("PASSWORD"),
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": config("DB_NAME"),
+#         "USER": config("DB_USER"),
+#         "PASSWORD": config("PASSWORD"),
+#         "HOST": "127.0.0.1",
+#         "PORT": "5432",
+#     }
+# }
 
+DATABASES = {
+    "default": dj_database_url.parse(config("DB_EXTERNAL_CONNECTION")),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
