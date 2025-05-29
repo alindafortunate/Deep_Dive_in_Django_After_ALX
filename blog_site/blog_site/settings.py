@@ -86,6 +86,7 @@ WSGI_APPLICATION = "blog_site.wsgi.application"
 #     }
 # }
 
+# ###### Local PostgreSQL Database Connection ########
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
@@ -97,6 +98,7 @@ WSGI_APPLICATION = "blog_site.wsgi.application"
 #     }
 # }
 
+# #### Render PostgreSQL Database Connection ####
 DATABASES = {
     "default": dj_database_url.parse(config("DB_EXTERNAL_CONNECTION")),
 }
