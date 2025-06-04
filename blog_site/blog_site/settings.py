@@ -87,21 +87,21 @@ WSGI_APPLICATION = "blog_site.wsgi.application"
 # }
 
 # ###### Local PostgreSQL Database Connection ########
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": config("DB_NAME"),
-#         "USER": config("DB_USER"),
-#         "PASSWORD": config("PASSWORD"),
-#         "HOST": "127.0.0.1",
-#         "PORT": "5432",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
 
 # #### Render PostgreSQL Database Connection ####
-DATABASES = {
-    "default": dj_database_url.parse(config("DB_EXTERNAL_CONNECTION")),
-}
+# DATABASES = {
+#     "default": dj_database_url.parse(config("DB_EXTERNAL_CONNECTION")),
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -137,9 +137,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # user uploaded files
 MEDIA_URL = "/media/"
